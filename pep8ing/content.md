@@ -66,8 +66,10 @@ Given python code, return all the bad things.
 
 ### Usage
 
-    pep8 myscript.py
-    pep8 myproj
+```sh
+$ pep8 myscript.py
+$ pep8 myproj
+```
 
 TODO: Examples, can do these live!
 
@@ -111,16 +113,20 @@ loop through hits and fix them:
 
 ### Usage
 
-    autopep8 myscript.py --diff | cdiff
-    autopep8 myscript.py --in-place
+```sh
+$ autopep8 myscript.py --diff | cdiff
+$ autopep8 myscript.py --in-place
 
-    autopep8 myproj --recursive --in-place
+$ autopep8 myproj --recursive --in-place
+```
 
 ---
 
 ### Example:
 
-    code = open("myscript.py").readlines()
+```py
+code = open("myscript.py").readlines()
+```
 
 Now compare to the list of pep8 failures (note: lines are 1-index).
 
@@ -138,16 +144,20 @@ yapf by @google (Bill Wendling and Eli Bendersky)
 
 Some sections of code have multiple ways to fix, which is best?
 
-    f(argument1="something quite long", argument2="something even longer", argument3="over 80 chars)
+```py
+f(argument1="something quite long", argument2="something even longer", argument3="over 80 chars)
+```
 
 Could become (both pass pep8):
 
-    f(argument1="something quite long", argument2="something even longer",
-      argument3="over 80 chars)
+```py
+f(argument1="something quite long", argument2="something even longer",
+  argument3="over 80 chars")
 
-    f(argument1="something quite long",
-      argument2="something even longer",
-      argument3="over 80 chars)
+f(argument1="something quite long",
+  argument2="something even longer",
+  argument3="over 80 chars")
+```
 
 which is best?
 
@@ -159,8 +169,10 @@ which is best?
 
 Avoid arguments/discussion, just accept yapf (will give you a canonical answer).
 
-    yapf myscript.py --diff | cdiff
-    yapf myproj --recursive --in-place
+```sh
+$ yapf myscript.py --diff | cdiff
+$ yapf myproj --recursive --in-place
+```
 
 Note: also accepts local style if you want to deviate from PEP8,
 e.g. `indent_width = 2` (you heathen).
@@ -180,19 +192,21 @@ This becomes a graph theoretic problem (use Dijikstra's; TODO check).
 
 #### Example
 
-    f(argument1="something quite long",[NEWLINE|SPACE]argument2="something even longer",[NEWLINE|SPACE]argument3="over 80 chars)
+```py
+f(argument1="something quite long",[NEWLINE|SPACE]argument2="something even longer",[NEWLINE|SPACE]argument3="over 80 chars)
 
-    # (SPACE, SPACE) 
-    f(argument1="something quite long", argument2="something even longer", argument3="over 80 chars)
+# (SPACE, SPACE) 
+f(argument1="something quite long", argument2="something even longer", argument3="over 80 chars)
 
-    # (SPACE, NEWLINE)
-    f(argument1="something quite long", argument2="something even longer",
-      argument3="over 80 chars)
+# (SPACE, NEWLINE)
+f(argument1="something quite long", argument2="something even longer",
+  argument3="over 80 chars")
 
-    # (NEWLINE, NEWLINE) 
-    f(argument1="something quite long",
-      argument2="something even longer",
-      argument3="over 80 chars)
+# (NEWLINE, NEWLINE) 
+f(argument1="something quite long",
+  argument2="something even longer",
+  argument3="over 80 chars")
+```
 
 TODO what is their badness??
 
@@ -232,10 +246,10 @@ merge-base of a branch).
 ## Usage
 
 ```sh
-pep8radius myscript.py --diff | cdiff
-pep8radius myproj --in-place
+$ pep8radius myscript.py --diff | cdiff
+$ pep8radius myproj --in-place
 
-pep8radius myproj --inplace --yapf
+$ pep8radius myproj --inplace --yapf
 ```
 
 Gets the lines which have changed, passes them to autopep8 or yapf.
