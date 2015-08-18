@@ -231,10 +231,12 @@ merge-base of a branch).
 
 ## Usage
 
-    pep8radius myscript.py --diff | cdiff
-    pep8radius myproj --in-place
+```sh
+pep8radius myscript.py --diff | cdiff
+pep8radius myproj --in-place
 
-    pep8radius myproj --inplace --yapf
+pep8radius myproj --inplace --yapf
+```
 
 Gets the lines which have changed, passes them to autopep8 or yapf.
 
