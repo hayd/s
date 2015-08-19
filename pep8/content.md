@@ -58,7 +58,7 @@ TODO: Bad code examples (hidden bugs)
 
 ## Where's are the problems
 
-pep8 by @jcrocholl (now at PyCQA)
+pep8 originally by @jcrocholl (now at @IanLee1521 / PyCQA)
 
 Given python code, return all the bad things.
 
@@ -73,8 +73,8 @@ $ pep8 myproj
 
 TODO: Examples, can do these live!
 
-side note: landscape/codeclimate extend this idea to catch "code smells",
-lint-type errors.
+side note: flake mccabe extend this idea to catch "code smells",
+lint errors.
 
 ---
 
