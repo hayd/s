@@ -13,8 +13,9 @@ docstrings.
 
 ## In this talk
 
-- how to write docstrings
-- use them to generate documentation.
+- how to write docstrings.
+- use docstrings to generate documentation.
+- how to host documentation.
 
 ---
 
@@ -28,7 +29,12 @@ doc"""Markdown goes *here*, also $\LaTeX$"""
 function bar() end
 ```
 
-Note: you can use single quotes but triple quotes should be preferred.
+---
+
+## Tips
+
+- You can use single quotes but triple quotes should be preferred.
+- You should only use h4+ (for reasons discussed later).
 
 ---
 
@@ -40,30 +46,12 @@ Just works<sup>TM</sup>.
 
 ### Backwards compat (0.3)
 
-As a user uou can still have docstrings, but you need to use `Lexicon.jl`.
+As a user you can still have docstrings, but you need to use `Lexicon.jl`.
 
-As a package writer there's no need to require Lexicon.
-
----
-
-#### REPL EXAMPLE
-
-```
-help> foo # nope.
-julia> using Lexicon
-help> foo # yup
-```
-
-In 0.3, Lexicon (lazily) looks up documentation.
-
----
-
-Note: package maintainers have no need to import Lexicon, but if you want to
-use the doc".." syntax (i.e. have latex) ensure you're
-`using Compat`.
+As a package writer there's no need to require Lexicon, just use Compat
+(if you want to use the doc"""...""" syntax; latex).
 
 (TODO Compat.jl PR).
-
 
 ---
 
@@ -75,21 +63,25 @@ So now you have docstrings...
 
 HELP works:
 
-```
-?help> foo
-```
+![help for condensation](help_condensation.png)
 
-Renders in markdown, or if using Juno etc. rendered.
+Renders in markdown, or if using Juno etc. rendered as html.
 
 TODO: include juno image.
 
-
-*Note: help worked in 0.3 Base (but did not extend to user/library-defined methods).*
-
 ---
 
-![help for condensation](help_condensation.png)
+#### REPL EXAMPLE
 
+In 0.3 you have to use Lexicon (lazily) looks up documentation.
+
+```
+help> foo # nope.
+julia> using Lexicon
+help> foo # yup
+```
+
+*Note: help worked in 0.3 Base (but did not extend to user/library-defined methods).*
 
 ---
 
@@ -104,7 +96,7 @@ What you want: documentation to be generated from docstrings.
 
 ---
 
-TODO: include condensation image (from lightgraphs).
+TODO: include condensation image (from lightgraphs) when layout is finalized.
 
 ---
 
@@ -120,9 +112,12 @@ using Lexicon
 generate_for(YourPackage, "about.md", "linalg.md")
 ```
 
+TODO: finalize api
+
 ---
 
 #### docs/about.md
+
 ```
 {{YourPackage}}
 
@@ -146,11 +141,12 @@ So:
 ```
 {{LightGraphs}}
 ```
+
 becomes the same as help YourPackage.
 
 ![About LightGraphs](about_lightgraphs.png)
 
-INCLUDE images from help of functions.
+TODO images from help of functions.
 
 ---
 
@@ -190,6 +186,14 @@ easy to set up:
 3. include an `mkdocs.yml`\*
 
 \*Hint: copy someone elses! (Lexicon may be able to build it in the future.)
+
+---
+
+## mkdoc.yml
+
+```
+TODO include sample (with docs/_generated)
+```
 
 ---
 
