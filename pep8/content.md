@@ -25,7 +25,7 @@ standard library in the main Python distribution.
 
 ---
 
-> ### A Foolish Consistency is the Hobgoblin of Little Minds
+## A Foolish Consistency is the Hobgoblin of Little Minds
 
 > A style guide is about consistency. Consistency with this style guide is
 > important. Consistency within a project is more important. Consistency within

@@ -87,16 +87,22 @@ help> foo # yup
 
 ## Online documentation
 
-What you want: documentation to be generated from docstrings.
+What you want:
 
-- don't repeat yourself (document functions in just one place)
-- don't let documentation go out of sync
+- don't repeat yourself (document functions in just one place).
+- don't let documentation go out of sync.
+- minimize noise.
 
 => We should generate it from the docstrings.
 
 ---
 
-TODO: include condensation image (from lightgraphs) when layout is finalized.
+<img src="feedme.jpg" style="width: 90%" />
+
+
+---
+
+TODO:include condensation image (from lightgraphs) when layout is finalized.
 
 ---
 
