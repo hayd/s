@@ -44,12 +44,57 @@ Just works<sup>TM</sup>.
 
 ---
 
+You can have all the nice things in markdown:
+
+Lists
+```
+- list item 1
+- list items 2
+
+1. enumerated Lists
+2. and so on
+```
+
+---
+
+Code blocks
+
+    ```
+    like so
+    ```
+
+---
+
+Links
+
+```
+[click me](https://julialang.org)
+```
+
+Images
+
+```
+![alternative text](https://photos3.meetupstatic.com/photos/event/2/f/1/e/global_322092062.jpeg)
+```
+---
+
+and more...
+
+- https://daringfireball.net/projects/markdown/
+- http://commonmark.org/
+
+Note: There are slightly different flavors, but the aim is to be as much
+CommonMark as possible...
+
+---
+
 ### Backwards compat (0.3)
 
 As a user you can still have docstrings, but you need to use `Lexicon.jl`.
 
 As a package writer there's no need to require Docile/Lexicon
-(unless you want to use the doc"""...""" syntax e.g. for latex).
+(unless you want to use the doc"""...""" syntax e.g. for latex, in which
+case you need to be using Docile - but only on 0.3).
 
 ---
 
@@ -59,7 +104,7 @@ So now you have docstrings...
 
 ---
 
-HELP works:
+#### REPL help works
 
 ![help for condensation](help_condensation.png)
 
@@ -67,7 +112,7 @@ Renders in markdown, or if using Juno or Jupyter etc. rendered as html.
 
 ---
 
-#### REPL EXAMPLE
+#### even in 0.3
 
 In 0.3 you have to use Lexicon (lazily) looks up documentation.
 
@@ -77,7 +122,8 @@ julia> using Lexicon
 help> foo # yup
 ```
 
-*Note: help worked in 0.3 Base (but did not extend to user/library-defined methods).*
+*Note: Without Lexicon, help worked in 0.3 Base (but did not extend to
+user/library-defined methods).*
 
 ---
 
@@ -108,6 +154,10 @@ Note: Reason not to include > h4.
 ---
 
 ## How to generate
+
+WARNING: What follows is still very much WIP...
+
+*(However it all leverages having Markdown docstrings.)*
 
 ---
 
@@ -198,7 +248,7 @@ easy to set up:
 2. change [documentation type](https://docs.readthedocs.org/en/latest/builds.html) to mkdocs
 3. include an `mkdocs.yml`\*
 
-\*Hint: copy someone elses!
+\*Hint: copy someone elses config!
 
 *Note: Docile may be able to build it in the future.*
 
