@@ -6,7 +6,7 @@
 
 Shiny in 0.4.
 
-Among the *many* features is the up and coming (recently released??) julia is
+Among the *many* features is recently released latest julia is
 docstrings.
 
 ---
@@ -48,10 +48,8 @@ Just works<sup>TM</sup>.
 
 As a user you can still have docstrings, but you need to use `Lexicon.jl`.
 
-As a package writer there's no need to require Lexicon, just use Compat
-(if you want to use the doc"""...""" syntax; latex).
-
-(TODO Compat.jl PR).
+As a package writer there's no need to require Docile/Lexicon
+(unless you want to use the doc"""...""" syntax e.g. for latex).
 
 ---
 
@@ -65,9 +63,7 @@ HELP works:
 
 ![help for condensation](help_condensation.png)
 
-Renders in markdown, or if using Juno etc. rendered as html.
-
-TODO: include juno image.
+Renders in markdown, or if using Juno or Jupyter etc. rendered as html.
 
 ---
 
@@ -99,10 +95,15 @@ What you want:
 
 <img src="feedme.jpg" style="width: 90%" />
 
-
 ---
 
-TODO:include condensation image (from lightgraphs) when layout is finalized.
+See http://lightgraphsjl.readthedocs.org/en/latest/pathing/.
+
+![e.g. Condensation documentation](condensation_online_doc.png)
+
+(This layout is WIP.)
+
+Note: Reason not to include > h4.
 
 ---
 
@@ -113,32 +114,32 @@ TODO:include condensation image (from lightgraphs) when layout is finalized.
 #### docs/build.jl
 ```
 using YourPackage
-using Lexicon
+using Docile      # NOTE: Currently only rewrite branch
 
-generate_for(YourPackage, "about.md", "linalg.md")
+makdocs()
 ```
 
-TODO: finalize api
+*TODO: finalize api!*
 
 ---
 
-#### docs/about.md
+#### docs/src/about.md
 
 ```
-{{YourPackage}}
+@{YourPackage}
 
-{{
+@{
     foo
     bar
-}}
+}
 
-{{repl
+@repl{
     > using YourPackage
     > foo()
-}}
+}
 ```
 
-these are expanded to markdown in `docs/_generated/about.md`.
+these are expanded to markdown in `docs/build/about.md`.
 
 ---
 
@@ -152,15 +153,13 @@ becomes the same as help YourPackage.
 
 ![About LightGraphs](about_lightgraphs.png)
 
-TODO images from help of functions.
-
 ---
 
 ```
-{{repl
+@repl{
     > foo()
     > bar()
-}}
+}
 ```
 is expanded to
 
@@ -170,6 +169,14 @@ julia> foo()
 julia> bar()
 42
 ```
+
+---
+
+### Also
+
+- Generate a top-level `README.md` by putting a similar file as `doc/src/README.md`.
+- Document arguments, references with Docile.Hooks/
+- Cross-references.
 
 ---
 
@@ -191,14 +198,41 @@ easy to set up:
 2. change [documentation type](https://docs.readthedocs.org/en/latest/builds.html) to mkdocs
 3. include an `mkdocs.yml`\*
 
-\*Hint: copy someone elses! (Lexicon may be able to build it in the future.)
+\*Hint: copy someone elses!
+
+*Note: Docile may be able to build it in the future.*
 
 ---
 
 ## mkdoc.yml
 
 ```
-TODO include sample (with docs/_generated)
+site_name: LightGraphs.jl
+site_author: Seth Bromberger
+repo_url: https://github.com/JuliaGraphs/LightGraphs.jl/
+theme: readthedocs
+pages:
+  - 'Home': 'index.md'
+  - 'About': 'about.md'
+  - 'Getting Started': 'gettingstarted.md'
+  - 'Operators': 'operators.md'
+  - 'Path and Traversal': 'pathing.md'
+  - 'Distance': 'distance.md'
+  - 'Centrality measures': 'centrality.md'
+  - 'Linear Algebra': 'linalg.md'
+  - 'Graph Generators': 'generators.md'
+  - 'Reading / Writing Graphs': 'persistence.md'
+  - 'Integration with other packages': 'integration.md'
+docs_dir: 'doc/build'
+markdown_extensions:
+  - extra
+  - tables
+  - fenced_code
+extra_css:
+  - LightGraphs.css
+extra_javascript:
+  - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML
+  - mathjaxhelper.js
 ```
 
 ---
@@ -222,6 +256,5 @@ TODO include sample (with docs/_generated)
 
 Special thanks:
 
-- Michael Hatherly for Lexicon and helping get this all working!
+- Michael Hatherly for Docile/Lexicon and helping get this all working.
 - Mike Innes for Markdown, Juno, and much of the docstring work.
-
